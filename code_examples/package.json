@@ -1,0 +1,11 @@
+{
+  "name": "lambda-demo",
+  "version": "1.0.0",
+  "description": "aws meetup group - lambda demo",
+  "main": "index.js",
+  "author": "mina yousseif",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.100.0"
+  }
+}

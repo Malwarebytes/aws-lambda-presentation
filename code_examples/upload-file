@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+
+// Note: run npm install or yarn install before using the upload script
+const AWS = require('aws-sdk'),
+      fs  = require('fs');
+
+// Not a good practice, for demo purpose only.
+// Load  AWS configuration and credentials from a JSON config file
+AWS.config.loadFromPath('./aws-config.json');
+const upload_bucket = "your-s3-bucket"
+// Read the file bytes then store to S3
+fs.readFile('malwarebytes.jpg', function (err, filedata) {
+  if (err) { throw err; }
+  var s3 = new AWS.S3();
+  var params = {
+    Body: filedata,
+    Bucket: upload_bucket,
+    Key: "malwarebytes.jpg"
+  };
+  s3.putObject(params, function(err, data) {
+   if (err) console.log(err, err.stack); // an error occurred
+   else     console.log(`Successfully uploaded the file: ${JSON.stringify(data)}`); // successful response
+  });
+});
